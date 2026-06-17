@@ -1,0 +1,22 @@
+{
+  "generated_at": "2026-01-22T21:00:00Z",
+  "articles": [
+    {
+      "title": "New Osiris Ransomware Emerges as New Strain Using POORTRY Driver in BYOVD Attack",
+      "url": "https://thehackernews.com/2026/01/new-osiris-ransomware-emerges-as-new.html",
+      "summary": "Cybersecurity researchers have disclosed details of a new ransomware family called Osiris that targeted a major food service franchisee operator in Southeast Asia in November 2025."
+    },
+    {
+      "title": "Critical GNU InetUtils telnetd Flaw Lets Attackers Bypass Login and Gain Root Access",
+      "url": "https://thehackernews.com/2026/01/critical-gnu-inetutils-telnetd-flaw.html",
+      "summary": "A critical security flaw has been disclosed in the GNU InetUtils telnet daemon (telnetd) that went unnoticed for nearly 11 years. CVE-2026-24061 is rated 9.8/10.0."
+    },
+    {
+      "title": "ThreatsDay Bulletin: Pixel Zero-Click, Redis RCE, China C2s, RAT Ads, Crypto Scams",
+      "url": "https://thehackernews.com/2026/01/threatsday-bulletin-pixel-zero-click.html",
+      "summary": "Most of this week's threats didn't rely on new tricks. They relied on familiar systems behaving exactly as designed, just in the wrong hands."
+    }
+  ],
+  "script": "Bonjour et bienvenue dans votre Flash Info Cyber !\n\nAujourd'hui, trois actualités majeures secouent le monde de la cybersécurité.\n\nPremièrement, une nouvelle souche de ransomware baptisée Osiris fait parler d'elle. Elle a ciblé un important opérateur de restauration en Asie du Sud-Est, utilisant une technique sophistiquée pour désactiver les logiciels de sécurité.\n\nEnsuite, une faille critique vieille de onze ans a été découverte dans GNU InetUtils. Avec un score de 9,8 sur 10, cette vulnérabilité permet aux attaquants d'obtenir un accès root sans authentification.\n\nEnfin, notre bulletin ThreatsDay révèle que les menaces de cette semaine ne reposent pas sur de nouvelles techniques. Les attaquants exploitent simplement des systèmes de confiance mal configurés.\n\nRestez vigilants et à demain pour un nouveau Flash Info Cyber !",
+  "audio_file": "audio/latest_briefing.mp3"
+}

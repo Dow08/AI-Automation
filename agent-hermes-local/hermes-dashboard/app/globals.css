@@ -1,0 +1,374 @@
+/* ============================================================
+   JAROD Dashboard — Design System v2.0
+   Source: ui-ux-pro-max skill (Modern Dark Cinema + Enterprise SaaS)
+   Stack: Next.js + Tailwind CSS
+   ============================================================ */
+
+/* ── Google Fonts (Plus Jakarta Sans — recommended: Friendly SaaS) ── */
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&family=JetBrains+Mono:wght@400;500&display=swap');
+
+@import "tailwindcss";
+
+/* ── Design Tokens ─────────────────────────────────────────────────── */
+@layer base {
+  :root {
+    /* Backgrounds (Modern Dark Cinema — no pure #000) */
+    --bg-deep:     #020203;      /* screen base, deepest layer */
+    --bg-base:     #050508;      /* page background            */
+    --bg-elevated: #0a0a10;      /* panels, sidebars           */
+    --bg-surface:  #0f0f1a;      /* cards, inputs              */
+    --bg-overlay:  #141428;      /* hover states, selected     */
+
+    /* Surfaces (Tailwind HSL tokens) */
+    --background:        5 5% 2%;          /* ≈ #050508  */
+    --foreground:        220 14% 96%;      /* ≈ #F0F2F8  */
+    --card:              240 10% 7%;       /* ≈ #0f0f1a  */
+    --card-foreground:   220 14% 96%;
+    --popover:           240 10% 5%;
+    --popover-foreground:220 14% 96%;
+
+    /* Brand (Enterprise SaaS — Indigo #4F46E5 + Violet #7C3AED) */
+    --primary:           243 75% 59%;      /* #5E6AD2    */
+    --primary-foreground:0 0% 100%;
+    --secondary:         262 62% 56%;      /* #7C3AED    */
+    --secondary-foreground:0 0% 100%;
+
+    /* Functional */
+    --muted:             240 6% 13%;
+    --muted-foreground:  217 10% 55%;      /* #8A8F98    */
+    --accent:            240 6% 13%;
+    --accent-foreground: 220 14% 96%;
+    --destructive:       0 72% 51%;
+    --destructive-foreground:0 0% 100%;
+
+    /* Borders & Inputs */
+    --border: 240 6% 16%;
+    --input:  240 6% 13%;
+    --ring:   243 75% 59%;
+
+    /* Radius scale (skill: 16px cards, 8px inputs, pill 999px) */
+    --radius-xs: 4px;
+    --radius-sm: 8px;
+    --radius:    12px;
+    --radius-lg: 16px;
+    --radius-xl: 20px;
+    --radius-2xl:24px;
+    --radius-pill:9999px;
+
+    /* Easing (Expo.out — Modern Dark Cinema skill) */
+    --ease-expo:   cubic-bezier(0.16, 1, 0.3, 1);
+    --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+    --ease-smooth: cubic-bezier(0.4, 0, 0.2, 1);
+
+    /* Transitions */
+    --transition-fast:   120ms var(--ease-expo);
+    --transition-base:   220ms var(--ease-expo);
+    --transition-slow:   380ms var(--ease-expo);
+
+    /* Elevation shadows (Dimensional Layering — colored, not grey) */
+    --shadow-1: 0 1px 3px rgba(0,0,0,0.4), 0 0 0 1px rgba(255,255,255,0.05);
+    --shadow-2: 0 4px 12px rgba(0,0,0,0.5), 0 0 0 1px rgba(255,255,255,0.06), 0 0 20px rgba(94,106,210,0.04);
+    --shadow-3: 0 8px 24px rgba(0,0,0,0.6), 0 0 0 1px rgba(255,255,255,0.07), 0 0 40px rgba(94,106,210,0.08);
+    --shadow-4: 0 20px 48px rgba(0,0,0,0.7), 0 0 0 1px rgba(255,255,255,0.08), 0 0 60px rgba(94,106,210,0.12);
+
+    /* Glow effects */
+    --glow-primary: 0 0 24px rgba(94, 106, 210, 0.30);
+    --glow-strong:  0 0 40px rgba(94, 106, 210, 0.45);
+    --glow-violet:  0 0 24px rgba(124, 58, 237, 0.30);
+    --glow-teal:    0 0 24px rgba(20, 184, 166, 0.25);
+    --glow-emerald: 0 0 24px rgba(16, 185, 129, 0.25);
+
+    /* Typography (Plus Jakarta Sans) */
+    --font-sans: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+    --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
+  }
+}
+
+/* ── Base Reset ────────────────────────────────────────────────────── */
+@layer base {
+  * {
+    border-color: rgba(255, 255, 255, 0.08);
+  }
+
+  html {
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
+
+  body {
+    background-color: var(--bg-base);
+    color: hsl(var(--foreground));
+    font-family: var(--font-sans);
+  }
+
+  code, pre, kbd, samp {
+    font-family: var(--font-mono);
+  }
+}
+
+/* ── Glassmorphism System ──────────────────────────────────────────── */
+
+/* Level 1 — Panels légers, arrière-plan */
+.glass {
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(20px) saturate(1.4);
+  -webkit-backdrop-filter: blur(20px) saturate(1.4);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  box-shadow: var(--shadow-1);
+}
+
+/* Level 2 — Cards, composants interactifs */
+.glass-card {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(24px) saturate(1.5);
+  -webkit-backdrop-filter: blur(24px) saturate(1.5);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: var(--shadow-2);
+  transition: box-shadow var(--transition-base),
+              border-color var(--transition-base),
+              transform var(--transition-base);
+}
+
+.glass-card:hover {
+  border-color: rgba(255, 255, 255, 0.13);
+  box-shadow: var(--shadow-3);
+}
+
+/* Level 3 — Modales, overlays, panneau fort */
+.glass-strong {
+  background: rgba(15, 15, 26, 0.75);
+  backdrop-filter: blur(32px) saturate(1.6);
+  -webkit-backdrop-filter: blur(32px) saturate(1.6);
+  border: 1px solid rgba(255, 255, 255, 0.10);
+  box-shadow: var(--shadow-4);
+}
+
+/* ── Aurora Background (optimisé skill) ──────────────────────────── */
+.bg-aurora {
+  position: relative;
+  background: radial-gradient(ellipse at 20% 20%, #0a0a14 0%, var(--bg-base) 60%);
+  overflow: hidden;
+  z-index: 0;
+}
+
+/* Blob 1 — Indigo */
+.bg-aurora::before {
+  content: "";
+  position: absolute;
+  width: 55vw;
+  height: 55vh;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(78, 70, 229, 0.18) 0%, transparent 70%);
+  filter: blur(80px);
+  top: -15%;
+  left: -8%;
+  z-index: 1;
+  pointer-events: none;
+  animation: blob-float-a 22s var(--ease-smooth) infinite alternate;
+}
+
+/* Blob 2 — Violet */
+.bg-aurora::after {
+  content: "";
+  position: absolute;
+  width: 50vw;
+  height: 50vh;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(124, 58, 237, 0.14) 0%, transparent 70%);
+  filter: blur(100px);
+  bottom: -15%;
+  right: -8%;
+  z-index: 1;
+  pointer-events: none;
+  animation: blob-float-b 28s var(--ease-smooth) infinite alternate;
+}
+
+/* Blob 3 — Teal (subtil, center-right) */
+.blob-teal {
+  position: absolute;
+  width: 35vw;
+  height: 35vh;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(20, 184, 166, 0.09) 0%, transparent 70%);
+  filter: blur(90px);
+  top: 35%;
+  right: 15%;
+  z-index: 1;
+  pointer-events: none;
+  animation: blob-float-c 18s var(--ease-smooth) infinite alternate;
+}
+
+@keyframes blob-float-a {
+  0%   { transform: translate(0, 0) scale(1); }
+  33%  { transform: translate(4%, 8%) scale(1.06); }
+  66%  { transform: translate(-3%, 4%) scale(0.96); }
+  100% { transform: translate(2%, -8%) scale(1.08); }
+}
+
+@keyframes blob-float-b {
+  0%   { transform: translate(0, 0) scale(1); }
+  33%  { transform: translate(-5%, -6%) scale(1.04); }
+  66%  { transform: translate(4%, -3%) scale(0.97); }
+  100% { transform: translate(-2%, 7%) scale(1.06); }
+}
+
+@keyframes blob-float-c {
+  0%   { transform: translate(0, 0) scale(1); }
+  50%  { transform: translate(-6%, 5%) scale(1.08); }
+  100% { transform: translate(5%, -5%) scale(0.94); }
+}
+
+/* ── Glow Utilities ────────────────────────────────────────────────── */
+.glow-primary { box-shadow: var(--glow-primary); }
+.glow-strong  { box-shadow: var(--glow-strong);  }
+.glow-violet  { box-shadow: var(--glow-violet);  }
+.glow-emerald { box-shadow: var(--glow-emerald); }
+.glow-teal    { box-shadow: var(--glow-teal);    }
+
+/* ── Button Gradient (Enterprise SaaS CTA) ───────────────────────── */
+.btn-gradient {
+  background: linear-gradient(135deg, #5E6AD2 0%, #7C3AED 100%);
+  box-shadow: 0 0 20px rgba(94, 106, 210, 0.30), 0 2px 8px rgba(0, 0, 0, 0.4);
+  transition: box-shadow var(--transition-base),
+              transform var(--transition-fast),
+              filter var(--transition-base);
+}
+
+.btn-gradient:hover {
+  box-shadow: 0 0 32px rgba(94, 106, 210, 0.45), 0 4px 16px rgba(0, 0, 0, 0.5);
+  filter: brightness(1.1);
+}
+
+.btn-gradient:active {
+  transform: scale(0.97);
+  transition: transform 80ms var(--ease-expo);
+}
+
+/* ── Press Effect (scale 0.97 — Modern Dark Cinema) ──────────────── */
+.press-effect {
+  transition: transform var(--transition-fast);
+}
+
+.press-effect:active {
+  transform: scale(0.97);
+}
+
+/* ── Scrollbar ────────────────────────────────────────────────────── */
+::-webkit-scrollbar       { width: 4px; height: 4px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb {
+  background: rgba(94, 106, 210, 0.25);
+  border-radius: 2px;
+  transition: background var(--transition-base);
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(94, 106, 210, 0.50);
+}
+
+/* ── Message Animations ───────────────────────────────────────────── */
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: translateY(0);    }
+}
+
+@keyframes fadeInRight {
+  from { opacity: 0; transform: translateX(-8px); }
+  to   { opacity: 1; transform: translateX(0);    }
+}
+
+.message-enter {
+  animation: fadeInUp 0.30s var(--ease-expo) forwards;
+}
+
+/* ── Dot Pulse Loader ─────────────────────────────────────────────── */
+@keyframes pulse-dot {
+  0%, 80%, 100% { transform: scale(0.55); opacity: 0.35; }
+  40%           { transform: scale(1.0);  opacity: 1;    }
+}
+
+.dot-pulse span {
+  display: inline-block;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: #5E6AD2;
+  animation: pulse-dot 1.4s var(--ease-smooth) infinite;
+}
+.dot-pulse span:nth-child(2) { animation-delay: 0.20s; }
+.dot-pulse span:nth-child(3) { animation-delay: 0.40s; }
+
+/* ── Card Stagger Reveal ──────────────────────────────────────────── */
+@keyframes cardReveal {
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: translateY(0);    }
+}
+
+.card-reveal {
+  animation: cardReveal 0.35s var(--ease-expo) both;
+}
+.card-reveal-1 { animation-delay: 0.04s; }
+.card-reveal-2 { animation-delay: 0.08s; }
+.card-reveal-3 { animation-delay: 0.12s; }
+.card-reveal-4 { animation-delay: 0.16s; }
+
+/* ── Aurora Pulse (IA thinking) ──────────────────────────────────── */
+@keyframes aurora-pulse {
+  0%, 100% { box-shadow: 0 0 12px rgba(94, 106, 210, 0.20); }
+  50%       { box-shadow: 0 0 28px rgba(124, 58, 237, 0.45); }
+}
+
+.ai-thinking {
+  animation: aurora-pulse 2s var(--ease-smooth) infinite;
+}
+
+/* ── Typing Orb (Streaming cursor) ───────────────────────────────── */
+@keyframes orb-trail {
+  0%   { opacity: 0; transform: scale(0.5); }
+  20%  { opacity: 1; transform: scale(1.0); }
+  80%  { opacity: 1; transform: scale(1.0); }
+  100% { opacity: 0; transform: scale(0.5); }
+}
+
+.orb-cursor {
+  display: inline-block;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: #5E6AD2;
+  filter: blur(1px) drop-shadow(0 0 6px #5E6AD2);
+  animation: orb-trail 0.8s var(--ease-expo) infinite;
+  margin-left: 2px;
+  vertical-align: middle;
+}
+
+/* ── Elevation Scale ──────────────────────────────────────────────── */
+.elevation-1 { box-shadow: var(--shadow-1); }
+.elevation-2 { box-shadow: var(--shadow-2); }
+.elevation-3 { box-shadow: var(--shadow-3); }
+.elevation-4 { box-shadow: var(--shadow-4); }
+
+/* ── Tab indicator gradient ───────────────────────────────────────── */
+.tab-active-gradient {
+  background: linear-gradient(135deg, rgba(94,106,210,0.20) 0%, rgba(124,58,237,0.15) 100%);
+  border: 1px solid rgba(94, 106, 210, 0.30);
+}
+
+/* ── Status badge pulse ───────────────────────────────────────────── */
+@keyframes status-pulse {
+  0%, 100% { opacity: 1;   box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.4); }
+  50%       { opacity: 0.8; box-shadow: 0 0 0 4px rgba(16, 185, 129, 0);   }
+}
+
+.status-online {
+  animation: status-pulse 2.5s var(--ease-smooth) infinite;
+}
+
+/* ── Input focus ring ─────────────────────────────────────────────── */
+.input-focus:focus-within {
+  border-color: rgba(94, 106, 210, 0.50) !important;
+  box-shadow: 0 0 0 3px rgba(94, 106, 210, 0.12);
+  transition: border-color var(--transition-fast),
+              box-shadow var(--transition-fast);
+}

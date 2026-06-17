@@ -1,0 +1,96 @@
+# ==============================================================================
+# SECRETS & CREDENTIALS — jamais committés
+# ==============================================================================
+.env
+.env.local
+.env.*.local
+.env.development
+.env.production
+*.key
+*.pem
+secrets/
+
+# ==============================================================================
+# SOUL / IDENTITÉ IA — privé
+# ==============================================================================
+soul.md
+SOUL.md
+config/SOUL.md
+Memoire_IA/data/SOUL.md
+
+# ==============================================================================
+# MEMOIRE_IA — données personnelles & runtime
+# ==============================================================================
+Memoire_IA/data/.env
+Memoire_IA/data/auth.json
+Memoire_IA/data/auth.lock
+Memoire_IA/data/.hermes_history
+Memoire_IA/data/.skills_prompt_snapshot.json
+Memoire_IA/data/.tirith-install-failed
+Memoire_IA/data/state.db
+Memoire_IA/data/state.db-shm
+Memoire_IA/data/state.db-wal
+Memoire_IA/data/conversations/
+Memoire_IA/data/sessions/
+Memoire_IA/data/memories/
+Memoire_IA/data/cache/
+Memoire_IA/data/logs/
+Memoire_IA/data/bin/
+Memoire_IA/data/sandboxes/
+Memoire_IA/data/home/
+Memoire_IA/data/workspace/
+Memoire_IA/data/plans/
+Memoire_IA/data/cron/
+Memoire_IA/data/hooks/
+Memoire_IA/data/skins/
+Memoire_IA/data/skills/
+Memoire_IA/data/user_profile.json
+Memoire_IA/data/models_dev_cache.json
+Memoire_IA/logs/
+
+# ==============================================================================
+# NEXT.JS
+# ==============================================================================
+hermes-dashboard/.next/
+hermes-dashboard/out/
+hermes-dashboard/build/
+hermes-dashboard/build-prod/
+hermes-dashboard/tmp/
+hermes-dashboard/.vercel
+hermes-dashboard/next-env.d.ts
+hermes-dashboard/*.tsbuildinfo
+hermes-dashboard/E:/
+
+# ==============================================================================
+# NODE / NPM
+# ==============================================================================
+node_modules/
+hermes-dashboard/node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# ==============================================================================
+# BACKUP & TEMP
+# ==============================================================================
+.backup_*/
+*.bak
+*.tmp
+*.new
+
+# ==============================================================================
+# DONNÉES RUNTIME
+# ==============================================================================
+hermes-dashboard/data/
+hermes-push-bundle.bundle
+
+# ==============================================================================
+# MISC
+# ==============================================================================
+.DS_Store
+Thumbs.db
+__pycache__/
+*.pyc
+.idea/
+.vscode/settings.json
+ui-ux-pro-max-skill/

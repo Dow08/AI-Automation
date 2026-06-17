@@ -1,0 +1,506 @@
+/* CyberDailyWatch - Cyberpunk/Terminal Theme */
+
+/* ========================================
+   CSS Variables & Reset
+   ======================================== */
+:root {
+    --primary-green: #00FF00;
+    --secondary-green: #00CC00;
+    --dark-green: #003300;
+    --bg-black: #0a0a0a;
+    --bg-dark: #111111;
+    --bg-terminal: #0d1117;
+    --text-dim: #00AA00;
+    --accent-cyan: #00FFFF;
+    --accent-red: #FF0040;
+    --border-color: #00FF0030;
+    --glow-color: rgba(0, 255, 0, 0.3);
+    --font-mono: 'Courier New', 'Lucida Console', Monaco, monospace;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* ========================================
+   Base Styles
+   ======================================== */
+body {
+    font-family: var(--font-mono);
+    background-color: var(--bg-black);
+    color: var(--primary-green);
+    min-height: 100vh;
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+/* ========================================
+   CRT Scanlines Effect
+   ======================================== */
+.scanlines {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1000;
+    background: repeating-linear-gradient(
+        0deg,
+        rgba(0, 0, 0, 0.15),
+        rgba(0, 0, 0, 0.15) 1px,
+        transparent 1px,
+        transparent 2px
+    );
+    animation: scanlines 0.1s steps(60) infinite;
+}
+
+@keyframes scanlines {
+    0% { background-position: 0 0; }
+    100% { background-position: 0 4px; }
+}
+
+/* Flicker effect */
+.scanlines::after {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 255, 0, 0.02);
+    animation: flicker 0.15s infinite;
+}
+
+@keyframes flicker {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.8; }
+}
+
+/* ========================================
+   Container
+   ======================================== */
+.container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 2rem;
+    position: relative;
+}
+
+/* ========================================
+   Header
+   ======================================== */
+.header {
+    text-align: center;
+    padding: 2rem 0;
+    border-bottom: 1px solid var(--border-color);
+    margin-bottom: 2rem;
+}
+
+.logo-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+.logo-prefix, .logo-suffix {
+    font-size: 2rem;
+    color: var(--text-dim);
+}
+
+.logo {
+    font-size: 2.5rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    text-shadow: 
+        0 0 10px var(--primary-green),
+        0 0 20px var(--primary-green),
+        0 0 40px var(--glow-color);
+}
+
+/* Glitch Effect */
+.glitch {
+    position: relative;
+    animation: glitch-skew 4s infinite linear alternate-reverse;
+}
+
+.glitch::before,
+.glitch::after {
+    content: attr(data-text);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.glitch::before {
+    color: var(--accent-cyan);
+    animation: glitch 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94) both infinite;
+    clip-path: polygon(0 0, 100% 0, 100% 35%, 0 35%);
+    transform: translateX(-2px);
+}
+
+.glitch::after {
+    color: var(--accent-red);
+    animation: glitch 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94) reverse both infinite;
+    clip-path: polygon(0 65%, 100% 65%, 100% 100%, 0 100%);
+    transform: translateX(2px);
+}
+
+@keyframes glitch {
+    0% { transform: translate(0); }
+    20% { transform: translate(-2px, 2px); }
+    40% { transform: translate(-2px, -2px); }
+    60% { transform: translate(2px, 2px); }
+    80% { transform: translate(2px, -2px); }
+    100% { transform: translate(0); }
+}
+
+@keyframes glitch-skew {
+    0%, 100% { transform: skew(0deg); }
+    5% { transform: skew(0.5deg); }
+    10% { transform: skew(-0.5deg); }
+}
+
+.tagline {
+    color: var(--text-dim);
+    font-size: 0.9rem;
+    margin-bottom: 1rem;
+    letter-spacing: 2px;
+}
+
+.status-bar {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    font-size: 0.75rem;
+    color: var(--secondary-green);
+}
+
+.status-item {
+    padding: 0.3rem 0.8rem;
+    border: 1px solid var(--border-color);
+    background: rgba(0, 255, 0, 0.05);
+}
+
+/* ========================================
+   Terminal Box
+   ======================================== */
+.terminal-box {
+    background: var(--bg-terminal);
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    overflow: hidden;
+    margin-bottom: 1.5rem;
+    box-shadow: 
+        0 0 20px rgba(0, 255, 0, 0.1),
+        inset 0 0 60px rgba(0, 0, 0, 0.3);
+}
+
+.terminal-header {
+    background: linear-gradient(180deg, #1a1a1a 0%, #111 100%);
+    padding: 0.5rem 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.terminal-title {
+    font-size: 0.8rem;
+    color: var(--text-dim);
+}
+
+.terminal-controls {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.control {
+    font-size: 0.7rem;
+    color: var(--text-dim);
+    cursor: pointer;
+}
+
+.control:hover {
+    color: var(--primary-green);
+}
+
+/* ========================================
+   Audio Section
+   ======================================== */
+.audio-section {
+    margin-bottom: 2rem;
+}
+
+.audio-container {
+    padding: 1.5rem;
+    text-align: center;
+}
+
+#audio-player {
+    width: 100%;
+    max-width: 500px;
+    height: 50px;
+    filter: sepia(20%) saturate(70%) grayscale(1) brightness(90%) hue-rotate(90deg);
+}
+
+.audio-label {
+    margin-top: 1rem;
+    font-size: 0.85rem;
+    color: var(--text-dim);
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.5; }
+}
+
+/* ========================================
+   News Section
+   ======================================== */
+.section-title {
+    font-size: 1rem;
+    color: var(--primary-green);
+    margin-bottom: 1rem;
+    padding-left: 0.5rem;
+    border-left: 3px solid var(--primary-green);
+}
+
+.news-container {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.news-card {
+    display: flex;
+    gap: 1rem;
+    padding: 1rem;
+    background: var(--bg-terminal);
+    border: 1px solid var(--border-color);
+    border-left: 3px solid var(--primary-green);
+    transition: all 0.3s ease;
+}
+
+.news-card:hover {
+    border-left-color: var(--accent-cyan);
+    background: rgba(0, 255, 255, 0.02);
+    box-shadow: 0 0 20px rgba(0, 255, 255, 0.1);
+    transform: translateX(5px);
+}
+
+.news-index {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: var(--dark-green);
+    min-width: 50px;
+}
+
+.news-content {
+    flex: 1;
+}
+
+.news-title {
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+}
+
+.news-title a {
+    color: var(--primary-green);
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.news-title a:hover {
+    color: var(--accent-cyan);
+    text-shadow: 0 0 10px var(--accent-cyan);
+}
+
+.news-summary {
+    font-size: 0.85rem;
+    color: var(--text-dim);
+    margin-bottom: 0.75rem;
+    line-height: 1.5;
+}
+
+.news-link {
+    display: inline-block;
+    font-size: 0.75rem;
+    color: var(--secondary-green);
+    text-decoration: none;
+    padding: 0.25rem 0.75rem;
+    border: 1px solid var(--border-color);
+    transition: all 0.3s ease;
+}
+
+.news-link:hover {
+    background: var(--primary-green);
+    color: var(--bg-black);
+    box-shadow: 0 0 15px var(--glow-color);
+}
+
+/* ========================================
+   Script Section
+   ======================================== */
+.script-section {
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+}
+
+.script-content {
+    padding: 1.5rem;
+    max-height: 400px;
+    overflow-y: auto;
+}
+
+.script-text {
+    white-space: pre-wrap;
+    font-size: 0.9rem;
+    line-height: 1.8;
+    color: var(--text-dim);
+}
+
+/* Custom scrollbar */
+.script-content::-webkit-scrollbar {
+    width: 8px;
+}
+
+.script-content::-webkit-scrollbar-track {
+    background: var(--bg-black);
+}
+
+.script-content::-webkit-scrollbar-thumb {
+    background: var(--dark-green);
+    border-radius: 4px;
+}
+
+.script-content::-webkit-scrollbar-thumb:hover {
+    background: var(--primary-green);
+}
+
+/* ========================================
+   Loading & Error States
+   ======================================== */
+.loading {
+    text-align: center;
+    padding: 2rem;
+    color: var(--text-dim);
+}
+
+.loader {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    border: 2px solid var(--border-color);
+    border-top-color: var(--primary-green);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin-bottom: 0.5rem;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+.loading-text {
+    color: var(--text-dim);
+    animation: blink 1s steps(2) infinite;
+}
+
+@keyframes blink {
+    0%, 49% { opacity: 1; }
+    50%, 100% { opacity: 0; }
+}
+
+.error-message {
+    text-align: center;
+    padding: 2rem;
+    color: var(--accent-red);
+    border: 1px solid var(--accent-red);
+    background: rgba(255, 0, 64, 0.05);
+}
+
+.error-detail {
+    font-size: 0.8rem;
+    color: #FF6680;
+    margin-top: 0.5rem;
+}
+
+/* ========================================
+   Footer
+   ======================================== */
+.footer {
+    text-align: center;
+    padding: 2rem 0;
+    margin-top: 2rem;
+    border-top: 1px solid var(--border-color);
+}
+
+.footer-content p {
+    margin-bottom: 0.5rem;
+}
+
+.footer-sub {
+    font-size: 0.75rem;
+    color: var(--text-dim);
+}
+
+.footer-tech {
+    font-size: 0.7rem;
+    color: var(--dark-green);
+}
+
+/* ========================================
+   Responsive Design
+   ======================================== */
+@media (max-width: 768px) {
+    .container {
+        padding: 1rem;
+    }
+    
+    .logo {
+        font-size: 1.5rem;
+        letter-spacing: 2px;
+    }
+    
+    .logo-prefix, .logo-suffix {
+        font-size: 1.5rem;
+    }
+    
+    .status-bar {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+    
+    .news-card {
+        flex-direction: column;
+    }
+    
+    .news-index {
+        font-size: 1rem;
+    }
+}
+
+/* ========================================
+   Accessibility
+   ======================================== */
+@media (prefers-reduced-motion: reduce) {
+    .scanlines,
+    .scanlines::after,
+    .glitch::before,
+    .glitch::after {
+        animation: none;
+    }
+    
+    .news-card:hover {
+        transform: none;
+    }
+}

@@ -1,0 +1,22 @@
+version: "3.8"
+services:
+  hermes-agent:
+    image: nousresearch/hermes-agent:latest
+    container_name: hermes-agent-core
+    restart: unless-stopped
+    # HARDENING SÉCURITÉ
+    security_opt:
+      - no-new-privileges:true
+    cap_drop:
+      - ALL
+    # RÉSEAU & PORTS
+    network_mode: "bridge"
+    ports:
+      - "127.0.0.1:3000:3000" # Interface accessible uniquement depuis le localhost
+    env_file:
+      - .env
+    volumes:
+      # LIAISONS SSD E:
+      - /mnt/e/Memoire_IA/data:/opt/data
+      - /mnt/e/Memoire_IA/logs:/opt/logs
+      - ./config/SOUL.md:/opt/app/config/SOUL.md:ro # Injection des directives en lecture seule

@@ -1,0 +1,18 @@
+# Ignore .env files (contains API keys)
+.env
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+venv/
+ENV/
+
+# IDE
+.vscode/
+.idea/
+
+# Generated files
+public/audio/*.mp3

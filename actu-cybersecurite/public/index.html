@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="CyberDailyWatch - Votre flash info cybersécurité quotidien automatisé">
+    <title>CyberDailyWatch | Flash Info Cyber</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <!-- CRT Scanline Overlay -->
+    <div class="scanlines"></div>
+
+    <!-- Glitch Effect Container -->
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <div class="logo-container">
+                <span class="logo-prefix">[</span>
+                <h1 class="logo glitch" data-text="CyberDailyWatch">CyberDailyWatch</h1>
+                <span class="logo-suffix">]</span>
+            </div>
+            <p class="tagline">// FLASH INFO CYBERSÉCURITÉ AUTOMATISÉ</p>
+            <div class="status-bar">
+                <span class="status-item">◉ SYSTÈME ACTIF</span>
+                <span class="status-item" id="last-update">DERNIÈRE MAJ: --</span>
+            </div>
+        </header>
+
+        <!-- Audio Player Section -->
+        <section class="audio-section">
+            <div class="terminal-box">
+                <div class="terminal-header">
+                    <span class="terminal-title">▶ BRIEFING_AUDIO.exe</span>
+                    <div class="terminal-controls">
+                        <span class="control">_</span>
+                        <span class="control">□</span>
+                        <span class="control">×</span>
+                    </div>
+                </div>
+                <div class="audio-container">
+                    <audio id="audio-player" controls>
+                        <source src="audio/latest_briefing.mp3" type="audio/mpeg">
+                        Votre navigateur ne supporte pas l'élément audio.
+                    </audio>
+                    <p class="audio-label">📡 Écoutez le flash info du jour</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- News Section -->
+        <section class="news-section">
+            <h2 class="section-title">&gt;_ ACTUALITÉS_DU_JOUR</h2>
+            <div id="news-container" class="news-container">
+                <div class="loading">
+                    <span class="loader"></span>
+                    <p>Chargement des données...</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Script Section -->
+        <section class="script-section">
+            <h2 class="section-title">&gt;_ SCRIPT_RADIO</h2>
+            <div class="terminal-box">
+                <div class="terminal-header">
+                    <span class="terminal-title">cat script.txt</span>
+                </div>
+                <div id="script-content" class="script-content">
+                    <p class="loading-text">En attente du script...</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="footer-content">
+                <p>[ CYBERDAILYWATCH v1.0 ]</p>
+                <p class="footer-sub">Propulsé par OpenAI + edge-tts | Données: TheHackerNews</p>
+                <p class="footer-tech">GitHub Actions • Zero-Touch Automation</p>
+            </div>
+        </footer>
+    </div>
+
+    <script>
+        // Fetch and display data from data.json
+        async function loadData() {
+            try {
+                const response = await fetch('data.json');
+                if (!response.ok) {
+                    throw new Error('Données non disponibles');
+                }
+                const data = await response.json();
+
+                // Update last update time
+                const date = new Date(data.generated_at);
+                document.getElementById('last-update').textContent =
+                    `DERNIÈRE MAJ: ${date.toLocaleDateString('fr-FR')} ${date.toLocaleTimeString('fr-FR')}`;
+
+                // Display news articles (use French translations if available)
+                const newsContainer = document.getElementById('news-container');
+                newsContainer.innerHTML = data.articles.map((article, index) => `
+                    <article class="news-card">
+                        <div class="news-index">[${String(index + 1).padStart(2, '0')}]</div>
+                        <div class="news-content">
+                            <h3 class="news-title">
+                                <a href="${article.url}" target="_blank" rel="noopener noreferrer">
+                                    ${article.title_fr || article.title}
+                                </a>
+                            </h3>
+                            <p class="news-summary">${article.summary_fr || article.summary}</p>
+                            <a href="${article.url}" target="_blank" class="news-link">
+                                LIRE &gt;&gt;
+                            </a>
+                        </div>
+                    </article>
+                `).join('');
+
+                // Display script
+                document.getElementById('script-content').innerHTML = `
+                    <pre class="script-text">${data.script}</pre>
+                `;
+
+            } catch (error) {
+                console.error('Erreur:', error);
+                document.getElementById('news-container').innerHTML = `
+                    <div class="error-message">
+                        <p>⚠ ERREUR: Impossible de charger les données</p>
+                        <p class="error-detail">${error.message}</p>
+                    </div>
+                `;
+            }
+        }
+
+        // Add typing effect to tagline
+        function typeEffect() {
+            const tagline = document.querySelector('.tagline');
+            const text = tagline.textContent;
+            tagline.textContent = '';
+            let i = 0;
+
+            function type() {
+                if (i < text.length) {
+                    tagline.textContent += text.charAt(i);
+                    i++;
+                    setTimeout(type, 50);
+                }
+            }
+            type();
+        }
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', () => {
+            loadData();
+            typeEffect();
+        });
+    </script>
+</body>
+
+</html>
