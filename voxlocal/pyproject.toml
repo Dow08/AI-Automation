@@ -5,6 +5,9 @@ description = "VoxLocal — réceptionniste vocal IA en marque blanche (serveurs
 requires-python = ">=3.10"
 dependencies = [
   "mcp>=1.2.0",
+  "fastapi>=0.110",
+  "uvicorn>=0.29",
+  "python-multipart>=0.0.9",
 ]
 
 [project.optional-dependencies]
