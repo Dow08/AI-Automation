@@ -7,6 +7,7 @@
 - **En attente Dorian : tâche #6 (comptes gratuits)** + validation des brouillons légaux par un pro.
 - **9 MCP sur 10 construits & testés** : model-router, memory, prospecting, voxagent-config, compliance, transcript-qa, crm, calendar (backend local), billing (backend local).
 - **1 MCP restant** : telephony (Vapi+Twilio) — le seul à nécessiter un compte externe + entité.
+- **Simulation bout-en-bout : flux complet PROUVÉ** (RDV + escalade + détection d'hallucination) — `voxlocal/demo/simulate_call.py`.
 - **Backends à brancher plus tard** : calendar→Google, billing→Stripe (les versions locales fonctionnent déjà).
 - **Action Dorian** : ouvrir les comptes (#6, dont Vapi) + entité juridique → débloque le vocal réel (telephony).
 - Dernière mise à jour : 2026-06-30
@@ -23,11 +24,12 @@
 | 7 — Onboarding & app | ⬜ À venir | — | — | — |
 | 8 — Facturation & ops auto | 🔵 mcp-billing OK (anticipé, backend local) | 9 | 2026-06-30 | — |
 | 9 — QA & durcissement | 🔵 mcp-transcript-qa OK (anticipé) | 9 | 2026-06-30 | — |
-| 10 — Pilote & amélioration | ⬜ À venir | — | — | — |
+| 10 — Pilote & amélioration | 🔵 Simulation e2e OK (sans téléphonie réelle) | 9 | 2026-06-30 | — |
 
 ## Journal détaillé des tâches (le plus récent en haut)
 | Date | Phase | Tâche | Statut | Note | Notes |
 | :-- | :-: | :-- | :-- | :-: | :-- |
+| 2026-06-30 | 10 | Tâche #16 — Simulation bout-en-bout (RDV + escalade + hallucination détectée) | ✅ Terminé | 9 | Cerveau du produit prouvé à 0 € |
 | 2026-06-30 | 8 | Tâche #15 — mcp-billing (testé : setup+250min→463€, mois→164€, 100min→149€) | ✅ Terminé | 9 | Conforme modèle financier ; Stripe ultérieur |
 | 2026-06-30 | 4 | Tâche #14 — mcp-calendar (testé : anti-double-réservation, dispo réelle) | ✅ Terminé | 9 | Backend local ; Google Calendar ultérieur |
 | 2026-06-30 | 5 | Tâche #13 — mcp-crm (testé : add→list→update statut→funnel, SQLite local) | ✅ Terminé | 9 | Migration Supabase ultérieure |
