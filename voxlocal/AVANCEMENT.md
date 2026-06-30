@@ -8,6 +8,7 @@
 - **10 MCP sur 10 construits & testés** (telephony en **mode mock**) : model-router, memory, prospecting, voxagent-config, compliance, transcript-qa, crm, calendar, billing, telephony.
 - **Simulation bout-en-bout : flux complet PROUVÉ** (RDV + escalade + détection d'hallucination) — `voxlocal/demo/simulate_call.py`.
 - **App web (FastAPI)** : onboarding self-service + tableau de bord — `voxlocal/app/`.
+- **Non-régression** : golden test set **5/5 PASS** (anti-hallucination + anti-prompt-injection) — `voxlocal/tests/`.
 - **À brancher quand comptes/clé dispo** : telephony→Vapi réel, calendar→Google, billing→Stripe (les versions mock/locales fonctionnent déjà).
 - **Action Dorian** : ouvrir les comptes (#6, dont Vapi) + entité → passer du mock au vocal réel.
 - Dernière mise à jour : 2026-06-30
@@ -23,12 +24,13 @@
 | 6 — Conformité & sécurité | 🔵 mcp-compliance OK (anticipé) | 9 | 2026-06-30 | — |
 | 7 — Onboarding & app | ✅ App onboarding + dashboard (FastAPI) | 9 | 2026-06-30 | 2026-06-30 |
 | 8 — Facturation & ops auto | 🔵 mcp-billing OK (anticipé, backend local) | 9 | 2026-06-30 | — |
-| 9 — QA & durcissement | 🔵 mcp-transcript-qa OK (anticipé) | 9 | 2026-06-30 | — |
+| 9 — QA & durcissement | ✅ transcript-qa + golden test set (5/5) | 9 | 2026-06-30 | 2026-06-30 |
 | 10 — Pilote & amélioration | 🔵 Simulation e2e OK (sans téléphonie réelle) | 9 | 2026-06-30 | — |
 
 ## Journal détaillé des tâches (le plus récent en haut)
 | Date | Phase | Tâche | Statut | Note | Notes |
 | :-- | :-: | :-- | :-- | :-: | :-- |
+| 2026-06-30 | 9 | Tâche #19 — Golden test set + runner (5/5 PASS : hallucination, annonce IA, prompt injection) | ✅ Terminé | 9 | Non-régression du garde-fou |
 | 2026-06-30 | 7 | Tâche #18 — App onboarding + dashboard (FastAPI, testé : logique KB + routes) | ✅ Terminé | 9 | Formulaire self-service alimente l'agent |
 | 2026-06-30 | 3 | Tâche #17 — mcp-telephony (mode mock, testé : numéro, déploiement, comptage) | ✅ Terminé | 9 | 10/10 MCP ; Vapi réel quand clé dispo |
 | 2026-06-30 | 10 | Tâche #16 — Simulation bout-en-bout (RDV + escalade + hallucination détectée) | ✅ Terminé | 9 | Cerveau du produit prouvé à 0 € |
