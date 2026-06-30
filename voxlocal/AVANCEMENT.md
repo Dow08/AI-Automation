@@ -5,9 +5,10 @@
 ## État global
 - **Phases 1 & 2 — BUILD TERMINÉ** (gate WARDEN 9/10). MCP model-router, memory, prospecting testés OK ; template BTP + kit cold email + docs légales en place ; repo git.
 - **En attente Dorian : tâche #6 (comptes gratuits)** + validation des brouillons légaux par un pro.
-- **7 MCP sur 10 construits & testés** : model-router, memory, prospecting, voxagent-config, compliance, transcript-qa, crm. = TOUT ce qui est buildable à 0 € sans comptes externes.
-- **3 MCP restants = pure intégration, nécessitent des comptes** : telephony (Vapi+Twilio), calendar (OAuth Google), billing (Stripe).
-- **Action Dorian** : ouvrir les comptes (#6) + entité juridique → débloque le vocal réel et les 3 derniers MCP.
+- **9 MCP sur 10 construits & testés** : model-router, memory, prospecting, voxagent-config, compliance, transcript-qa, crm, calendar (backend local), billing (backend local).
+- **1 MCP restant** : telephony (Vapi+Twilio) — le seul à nécessiter un compte externe + entité.
+- **Backends à brancher plus tard** : calendar→Google, billing→Stripe (les versions locales fonctionnent déjà).
+- **Action Dorian** : ouvrir les comptes (#6, dont Vapi) + entité juridique → débloque le vocal réel (telephony).
 - Dernière mise à jour : 2026-06-30
 
 ## Suivi par phase
@@ -16,17 +17,19 @@
 | 1 — Prérequis & fondations | ✅ Build terminé (#6 = Dorian) | 9 | 2026-06-30 | 2026-06-30 |
 | 2 — Validation vente | ✅ Build terminé | 9 | 2026-06-30 | 2026-06-30 |
 | 3 — Cœur vocal (PoC) | 🔵 Partiel (voxagent-config OK ; telephony ⏳ Vapi) | — | 2026-06-30 | — |
-| 4 — Agenda & actions | ⬜ À venir | — | — | — |
+| 4 — Agenda & actions | ✅ mcp-calendar OK (backend local) | 9 | 2026-06-30 | 2026-06-30 |
 | 5 — Escalade & notifications | 🔵 mcp-crm OK (anticipé) | 9 | 2026-06-30 | — |
 | 6 — Conformité & sécurité | 🔵 mcp-compliance OK (anticipé) | 9 | 2026-06-30 | — |
 | 7 — Onboarding & app | ⬜ À venir | — | — | — |
-| 8 — Facturation & ops auto | ⬜ À venir | — | — | — |
+| 8 — Facturation & ops auto | 🔵 mcp-billing OK (anticipé, backend local) | 9 | 2026-06-30 | — |
 | 9 — QA & durcissement | 🔵 mcp-transcript-qa OK (anticipé) | 9 | 2026-06-30 | — |
 | 10 — Pilote & amélioration | ⬜ À venir | — | — | — |
 
 ## Journal détaillé des tâches (le plus récent en haut)
 | Date | Phase | Tâche | Statut | Note | Notes |
 | :-- | :-: | :-- | :-- | :-: | :-- |
+| 2026-06-30 | 8 | Tâche #15 — mcp-billing (testé : setup+250min→463€, mois→164€, 100min→149€) | ✅ Terminé | 9 | Conforme modèle financier ; Stripe ultérieur |
+| 2026-06-30 | 4 | Tâche #14 — mcp-calendar (testé : anti-double-réservation, dispo réelle) | ✅ Terminé | 9 | Backend local ; Google Calendar ultérieur |
 | 2026-06-30 | 5 | Tâche #13 — mcp-crm (testé : add→list→update statut→funnel, SQLite local) | ✅ Terminé | 9 | Migration Supabase ultérieure |
 | 2026-06-30 | 9 | Tâche #12 — mcp-transcript-qa (testé : tarif inventé 120€ → flag critique, clean → 10/10) | ✅ Terminé | 9 | Détection d'hallucination opérationnelle |
 | 2026-06-30 | 6 | Tâche #11 — mcp-compliance (testé : template BTP conforme, texte sans IA → détecté) | ✅ Terminé | 9 | AI Act art.50 + checklist |
