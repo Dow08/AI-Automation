@@ -5,11 +5,10 @@
 ## État global
 - **Phases 1 & 2 — BUILD TERMINÉ** (gate WARDEN 9/10). MCP model-router, memory, prospecting testés OK ; template BTP + kit cold email + docs légales en place ; repo git.
 - **En attente Dorian : tâche #6 (comptes gratuits)** + validation des brouillons légaux par un pro.
-- **9 MCP sur 10 construits & testés** : model-router, memory, prospecting, voxagent-config, compliance, transcript-qa, crm, calendar (backend local), billing (backend local).
-- **1 MCP restant** : telephony (Vapi+Twilio) — le seul à nécessiter un compte externe + entité.
+- **10 MCP sur 10 construits & testés** (telephony en **mode mock**) : model-router, memory, prospecting, voxagent-config, compliance, transcript-qa, crm, calendar, billing, telephony.
 - **Simulation bout-en-bout : flux complet PROUVÉ** (RDV + escalade + détection d'hallucination) — `voxlocal/demo/simulate_call.py`.
-- **Backends à brancher plus tard** : calendar→Google, billing→Stripe (les versions locales fonctionnent déjà).
-- **Action Dorian** : ouvrir les comptes (#6, dont Vapi) + entité juridique → débloque le vocal réel (telephony).
+- **À brancher quand comptes/clé dispo** : telephony→Vapi réel, calendar→Google, billing→Stripe (les versions mock/locales fonctionnent déjà).
+- **Action Dorian** : ouvrir les comptes (#6, dont Vapi) + entité → passer du mock au vocal réel.
 - Dernière mise à jour : 2026-06-30
 
 ## Suivi par phase
@@ -17,7 +16,7 @@
 | :-: | :-- | :-: | :-- | :-- |
 | 1 — Prérequis & fondations | ✅ Build terminé (#6 = Dorian) | 9 | 2026-06-30 | 2026-06-30 |
 | 2 — Validation vente | ✅ Build terminé | 9 | 2026-06-30 | 2026-06-30 |
-| 3 — Cœur vocal (PoC) | 🔵 Partiel (voxagent-config OK ; telephony ⏳ Vapi) | — | 2026-06-30 | — |
+| 3 — Cœur vocal (PoC) | ✅ voxagent-config + telephony (mock) | 9 | 2026-06-30 | 2026-06-30 |
 | 4 — Agenda & actions | ✅ mcp-calendar OK (backend local) | 9 | 2026-06-30 | 2026-06-30 |
 | 5 — Escalade & notifications | 🔵 mcp-crm OK (anticipé) | 9 | 2026-06-30 | — |
 | 6 — Conformité & sécurité | 🔵 mcp-compliance OK (anticipé) | 9 | 2026-06-30 | — |
@@ -29,6 +28,7 @@
 ## Journal détaillé des tâches (le plus récent en haut)
 | Date | Phase | Tâche | Statut | Note | Notes |
 | :-- | :-: | :-- | :-- | :-: | :-- |
+| 2026-06-30 | 3 | Tâche #17 — mcp-telephony (mode mock, testé : numéro, déploiement, comptage) | ✅ Terminé | 9 | 10/10 MCP ; Vapi réel quand clé dispo |
 | 2026-06-30 | 10 | Tâche #16 — Simulation bout-en-bout (RDV + escalade + hallucination détectée) | ✅ Terminé | 9 | Cerveau du produit prouvé à 0 € |
 | 2026-06-30 | 8 | Tâche #15 — mcp-billing (testé : setup+250min→463€, mois→164€, 100min→149€) | ✅ Terminé | 9 | Conforme modèle financier ; Stripe ultérieur |
 | 2026-06-30 | 4 | Tâche #14 — mcp-calendar (testé : anti-double-réservation, dispo réelle) | ✅ Terminé | 9 | Backend local ; Google Calendar ultérieur |
