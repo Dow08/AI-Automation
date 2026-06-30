@@ -1,0 +1,11 @@
+[project]
+name = "voxlocal"
+version = "0.1.0"
+description = "VoxLocal — réceptionniste vocal IA en marque blanche (serveurs MCP Python)"
+requires-python = ">=3.10"
+dependencies = [
+  "mcp>=1.2.0",
+]
+
+[project.optional-dependencies]
+dev = ["pytest", "ruff"]
